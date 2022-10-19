@@ -22,22 +22,3 @@ spec:
         image: vikas24775/webpage
         resources: {}
 status: {}
----
-apiVersion: v1
-kind: Service
-metadata:
-  creationTimestamp: null
-  labels:
-    app: mysvc
-  name: mysvc
-spec:
-  selector:
-    app: mysvc
-  ports:
-  - name: 80-80
-    protocol: TCP
-    port: {{ .Values.myservice.port }}
-    targetPort: 80
-  type: {{ .Values.myservice.type }}
-status:
-  loadBalancer: {}
