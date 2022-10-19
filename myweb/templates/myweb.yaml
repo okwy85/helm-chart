@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: mydeploy
+  labels:
+    app: mydeploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mydeploy
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mydeploy
+    spec:
+      containers:
+      - name: webpage
+        image: vikas24775/webpage
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mysvc
+  name: mysvc
+spec:
+  selector:
+    app: mysvc
+  ports:
+  - name: 80-80
+    protocol: TCP
+    port: 8080
+    targetPort: 80
+  type: NodePort
+status:
+  loadBalancer: {}
